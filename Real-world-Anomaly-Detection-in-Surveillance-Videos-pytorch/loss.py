@@ -7,7 +7,7 @@ def MIL(y_pred, batch_size, is_transformer=0):
     sparsity = torch.tensor(0.).cuda()
     smooth = torch.tensor(0.).cuda()
     if is_transformer==0:
-        y_pred = y_pred.view(batch_size, -1)
+        y_pred = y_pred.view(batch_size, -1)  # # torch.Size([30, 64])     
     else:
         y_pred = torch.sigmoid(y_pred)
 
@@ -15,8 +15,8 @@ def MIL(y_pred, batch_size, is_transformer=0):
         anomaly_index = torch.randperm(30).cuda()
         normal_index = torch.randperm(30).cuda()
 
-        y_anomaly = y_pred[i, :32][anomaly_index]
-        y_normal  = y_pred[i, 32:][normal_index]
+        y_anomaly = y_pred[i, :32][anomaly_index]  # 前32个snippet为异常视频                                             
+        y_normal  = y_pred[i, 32:][normal_index]   # 后32个snippet为正常视频   
 
         y_anomaly_max = torch.max(y_anomaly) # anomaly
         y_anomaly_min = torch.min(y_anomaly)

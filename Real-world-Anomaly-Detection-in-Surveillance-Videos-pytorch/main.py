@@ -72,7 +72,7 @@ def test_abnormal(epoch):
             score2 = model(inputs2)
             score2 = score2.cpu().detach().numpy()
             score_list2 = np.zeros(frames2[0])
-            step2 = np.round(np.linspace(0, torch.div(frames, 16, rounding_mode='floor'), 33))
+            step2 = np.round(np.linspace(0, torch.div(frames2, 16, rounding_mode='floor'), 33))
             for kk in range(32):
                 score_list2[int(step2[kk])*16:(int(step2[kk+1]))*16] = score2[kk]
             gt_list2 = np.zeros(frames2[0])

@@ -121,7 +121,7 @@ def test_abnormal(epoch):
             auc += metrics.auc(fpr, tpr)
 
         # print(ano_ss, nor_ss)
-        # print('auc = ', auc/140)
+        print('auc = ', auc/140)
 
 for epoch in range(0, 75):
     train(epoch)
